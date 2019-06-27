@@ -31,7 +31,7 @@ public class ValidationResult {
     //获取所以的错误信息
     public String getErrorMsg() {
         errorMsgMap.values().toArray();
-        String result = StringUtils.join(errorMsgMap.values().toArray(),", ");
+        String result = StringUtils.join(errorMsgMap.values().toArray(), ", ");//from apache
         return result;
 
     }

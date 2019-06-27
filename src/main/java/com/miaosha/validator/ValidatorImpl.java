@@ -14,7 +14,6 @@ public class ValidatorImpl implements InitializingBean {
     private Validator validator;//from javax
 
     public ValidationResult validate(Object bean) {
-
         ValidationResult validationResult = new ValidationResult();
         Set<ConstraintViolation<Object>> constraintViolationSet = validator.validate(bean);
 
@@ -28,7 +27,6 @@ public class ValidatorImpl implements InitializingBean {
                 validationResult.getErrorMsgMap().put(propertyName, errMsg);
             });
         }
-
         return validationResult;
 
     }
