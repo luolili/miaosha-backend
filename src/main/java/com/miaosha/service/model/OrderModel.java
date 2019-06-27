@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class OrderModel {
 
+    //账单号：由一定的规则生成的string
     private String id;
 
     //购买用户的id

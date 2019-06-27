@@ -14,7 +14,7 @@ public class PromoModel {
     private String promoName;
 
     //活动开始时间
-    private DateTime startTime;
+    private DateTime startTime;//joda-time
     private DateTime endTime;
     //描述活动对于的商品id
     private Integer itemId;

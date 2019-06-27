@@ -5,6 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+/**
+ * 先发发领域模型； 参数校验的优化
+ */
 public class ItemModel {
 
     private Integer id;
@@ -15,7 +18,7 @@ public class ItemModel {
 
     //商品价格
     @NotNull(message = "商品价格不能为空")
-    @Min(value = 0,message = "商品价格必须大于0")
+    @Min(value = 0, message = "商品价格必须大于0")//最小值指定
     private BigDecimal price;
 
     //商品库存
@@ -26,7 +29,7 @@ public class ItemModel {
     @NotBlank(message = "商品描述不能为空")
     private String description;
 
-    //商品的销量：非入参字段
+    //商品的销量：notice: 非入参字段
     //@NotNull(message = "商品销量不能为空")
     private Integer sales;
 
