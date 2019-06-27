@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 
 @Controller("item")
 @RequestMapping("/item")
-@CrossOrigin(origins = "*",allowCredentials = "true")
+@CrossOrigin(origins = "*", allowCredentials = "true")//解决前后端分离后跨域问题
 public class ItemController extends BaseController{
 
     @Autowired
     private ItemService itemService;
 
-    //商品详情
+    //商品列表
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public CommonReturnType getItems() {
@@ -58,7 +58,7 @@ public class ItemController extends BaseController{
                                        @RequestParam(name = "stock") Integer stock,
                                        @RequestParam(name = "imgUrl") String imgUrl) throws BusinessException {
 
-        //-1 封装要不错的对象
+        //-1 封装要保存的对象
         ItemModel itemModel = new ItemModel();
         itemModel.setTitle(title);
         itemModel.setDescription(description);
