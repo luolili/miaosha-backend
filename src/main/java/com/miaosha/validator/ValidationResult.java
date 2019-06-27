@@ -9,6 +9,7 @@ public class ValidationResult {
 
     //校验结果是否有错,给默认值，防止空指针
     private boolean hasErrors=false;
+    
     //存放错误信息的map
     Map<String, String> errorMsgMap=new HashMap<>();
 
