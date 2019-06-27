@@ -1,5 +1,8 @@
 package com.miaosha.controller.viewObject;
 
+/**
+ * 用于传给前台展示的视图对象
+ */
 public class UserVO {
 
     private Integer id;
