@@ -1,0 +1,49 @@
+
+1. 在保存的时候，始终无法保存，也没有报错
+原因：1.有些字段是设置为不能为空的，但是你没有给他默认值，这样也保存不了
+         当建表的时候数据库的表建有外键，此时可能造成存不进去数据（建立数据库不建议建外键）
+
+         对于varchar 类型的字段如果前台输入的字符串too long，超过数据库里面设置的长度，也会保存不起
+         如何排查这类问题：
+         在application.properties里面配置打印sql语句：
+         logging.level.com.miaosha.dao=debug
+         其中com.miaosha.dao是java mapper层的包，其他不变
+         将打印出来的sql复制到navicat中，赋值后执行，看错误信息
+
+
+
+ 2.springboot:解决跨域：加注解@CrossOrigin
+        back end:在controller上 加@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
+        front end:在ajax里面xhrFields: {withCredentials:true},//呼应后台CrossOrigin的配置
+
+ 3.为了让关联表里面的关联id，如user_id在主表和关联表同事保存的时候，在关联表里面的user_id有值，
+   需要在主表的insertSelective里面加keyProerty="id" useGeneratedKeys="true"这2个属性
+
+  4.为什么也要在前端做一系列的参数验证：让错误信息尽早暴露给用户
+  5.localhost:对应的ip:127.0.0.1，非ipconfig中的ipv4
+
+  在数据库对手机号家唯一索引:
+  设计表--> 索引,给索引命名:telphone_unique_index,选择栏位，选择类型：Unique,选择算法：BTREE
+
+  如何优化前置检查：加入hibernate-validator 依赖，他实现了javax.validation
+
+  --------商品模块设计
+
+  根据页面原型图 先思考领域模型的设计，而非数据库表的设计
+  原因：因为商品肯恶搞与其他模块/业务功能有关联
+
+  先开发model
+  数据库：decimal--Long; double--Double
+
+
+
+
+
+
+
+
+
+
+
+
+
