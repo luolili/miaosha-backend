@@ -15,7 +15,6 @@ import java.util.Map;
 public class BaseController {
 
     public static final String CONTENT_TYPE_FORMED = "application/x-www-form-urlencoded";
-    //定义钩子
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -30,8 +29,6 @@ public class BaseController {
             responseData.put("errCode", EmBusinessError.UNKNOWN_ERROR.getErrCode());
             responseData.put("errMsg", EmBusinessError.UNKNOWN_ERROR.getErrMsg());
         }
-        CommonReturnType type = new CommonReturnType();
-
         return CommonReturnType.create(responseData,"fail");
     }
 }
