@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = "*",allowCredentials = "true")
 public class OrderController extends BaseController{
 
-
     @Autowired
     private OrderService orderService;
 
@@ -30,7 +29,6 @@ public class OrderController extends BaseController{
     @ResponseStatus(HttpStatus.OK)
     public CommonReturnType create(@RequestParam(name="itemId") Integer itemId,
                                    @RequestParam(name="amount") Integer amount ) throws BusinessException {
-
 
         Boolean isLogin = (Boolean) servletRequest.getSession().getAttribute("IS_LOGIN");
 

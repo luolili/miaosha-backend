@@ -36,14 +36,12 @@ public class UserController extends BaseController{
     @Autowired
     private HttpServletRequest httpServletRequest;
 
-
     //用户登录
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = BaseController.CONTENT_TYPE_FORMED)
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "telphone") String telphone,
                                     @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         //-1 pre check
-
         if (org.apache.commons.lang3.StringUtils.isEmpty(telphone) ||
                 org.apache.commons.lang3.StringUtils.isEmpty(password)) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
