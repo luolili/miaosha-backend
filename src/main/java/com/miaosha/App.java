@@ -34,6 +34,7 @@ public class App implements ApplicationListener<ContextRefreshedEvent> {
         Person person = (Person) event.getApplicationContext().getBean("person");
         person.setId(null);
         System.out.println(person.getId());
+        System.out.println(person.getName());
     }
 
     @RequestMapping("/")

@@ -9,17 +9,14 @@ import org.springframework.stereotype.Component;
 public class Person {
 
     @Value("${person.id}")
+
     private String id;
+    //如果配置文件里面没有person.name的配置那么他的默认值就是ty
+    //如果在配置文件里面是：person.name-->那么打印出来的name值是空，而不是ty
+    @Value("${person.name:ty}")
     private String name;
 
 
-    public static void main(String[] args) {
-        Person person = new Person();
-        //System.out.println(person.id+"---"+person.name);//null null
-        System.out.println(person.getId() + "---" + person.getName());
-
-
-    }
 
     public String getId() {
         return id;
