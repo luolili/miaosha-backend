@@ -30,6 +30,7 @@ public class App implements ApplicationListener<ContextRefreshedEvent> {
     //使用@Value
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        //通过spring来获取对象，才能获得配置文件里面的值
         Person person = (Person) event.getApplicationContext().getBean("person");
         person.setId(null);
         System.out.println(person.getId());
