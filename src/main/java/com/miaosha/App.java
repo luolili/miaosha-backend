@@ -1,13 +1,16 @@
 package com.miaosha;
 
 import com.miaosha.dao.UserDOMapper;
+import com.miaosha.dataObject.Person;
 import com.miaosha.dataObject.UserDO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication(scanBasePackages = {"com.miaosha"})
 @MapperScan( "com.miaosha.dao")
 @RestController
-public class App {
+public class App implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     private UserDOMapper userDOMapper;
+
+    //使用@Value
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        Person person = (Person) event.getApplicationContext().getBean("person");
+        person.setId(null);
+        System.out.println(person.getId());
+    }
 
     @RequestMapping("/")
     public String home() {
