@@ -8,6 +8,8 @@ import com.miaosha.response.CommonReturnType;
 import com.miaosha.service.UserService;
 import com.miaosha.service.model.UserModel;
 import com.sun.xml.internal.rngom.parse.host.Base;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +113,8 @@ public class UserController extends BaseController{
 
         return CommonReturnType.create(null);
     }
+
+
     @RequestMapping("/get")
     @ResponseBody
     public CommonReturnType getUser(@RequestParam(name="id") Integer id)  {
@@ -126,6 +130,22 @@ public class UserController extends BaseController{
         return returnType;//return vo
     }
 
+    //swagger
+    @ApiOperation(value = "根据用户id获取用户", notes = "根据用户id获取用户详情")
+    @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Integer")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public CommonReturnType getUserWithSwagger(@PathVariable Integer id) {
+        UserModel userModel = userService.getUserById(id);
+        //不能把userModel传给前台，创建viewObject
+        //return userModel;
+        if (userModel == null) {
+            userModel.setEncrptPassword("22");//模拟空指针
+            //throw new BusinessException(EmBusinessError.USER_NOT_EXIST);
+        }
+        UserVO userVO = convertFromUserModel(userModel);
+        CommonReturnType returnType = CommonReturnType.create(userVO);
+        return returnType;//return vo
+    }
     /**
      * 领域模型转为视图模型
      * @param userModel

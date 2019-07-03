@@ -1,6 +1,7 @@
 package com.miaosha;
 
 import com.miaosha.dao.UserDOMapper;
+import com.miaosha.dataObject.Car;
 import com.miaosha.dataObject.Person;
 import com.miaosha.dataObject.UserDO;
 import org.mybatis.spring.annotation.MapperScan;
@@ -35,6 +36,11 @@ public class App implements ApplicationListener<ContextRefreshedEvent> {
         person.setId(null);
         System.out.println(person.getId());
         System.out.println(person.getName());
+        //---
+        Car car = (Car) event.getApplicationContext().getBean("car");
+        System.out.println("----");
+        car.setId("2s");
+        System.out.println(car.getId());
     }
 
     @RequestMapping("/")
