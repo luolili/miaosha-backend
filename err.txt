@@ -36,6 +36,15 @@
   数据库：decimal--Long; double--Double
 
 
+------use swagger
+1.导包--2.在controller 下面的config包下面写一个SwaggerConfig--3.在请求上面加注解
+
+注解：
+GET ，DELETE,POST,PUT：
+--@ApiOperation：操作的说明（value）
+--@ApiImplicitParam：参数说明：如参数名称，参数值（中文描述），参数类型（dataType）
+
+
 
 
 
