@@ -8,6 +8,7 @@ import com.miaosha.response.CommonReturnType;
 import com.miaosha.service.UserService;
 import com.miaosha.service.model.UserModel;
 import com.sun.xml.internal.rngom.parse.host.Base;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.security.MD5Encoder;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+@Api(value = "用户接口")
 @Controller("user")
 @RequestMapping("/user")
 //@CrossOrigin//springboot解决跨域，无法session共享
@@ -42,7 +44,7 @@ public class UserController extends BaseController{
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = BaseController.CONTENT_TYPE_FORMED)
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "telphone") String telphone,
-                                    @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+                                  @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         //-1 pre check
         if (org.apache.commons.lang3.StringUtils.isEmpty(telphone) ||
                 org.apache.commons.lang3.StringUtils.isEmpty(password)) {
@@ -56,6 +58,7 @@ public class UserController extends BaseController{
 
         return CommonReturnType.create(null);
     }
+
     //用户注册接口
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = BaseController.CONTENT_TYPE_FORMED)
     @ResponseBody
@@ -96,6 +99,7 @@ public class UserController extends BaseController{
         String newStr = base64Encoder.encode(md5.digest(str.getBytes("utf-8")));
         return newStr;
     }
+
     //用户提供电话号码 获取otp短信接口
     @RequestMapping(value = "/getotp", method = RequestMethod.POST, consumes = BaseController.CONTENT_TYPE_FORMED)
     @ResponseBody
@@ -146,6 +150,7 @@ public class UserController extends BaseController{
         CommonReturnType returnType = CommonReturnType.create(userVO);
         return returnType;//return vo
     }
+
     /**
      * 领域模型转为视图模型
      * @param userModel
