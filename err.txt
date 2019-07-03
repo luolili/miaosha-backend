@@ -41,6 +41,18 @@
 访问地址：  http://localhost:8090/swagger-ui.html
 注解：
 在类上：@Api:value说明类提供什么种类的接口；不加的话，默认是首字母小写的controller类名：userController
+@ApiModel
+
+@ApiModel(value = "账户信息")
+public class LoginSysUserDTO {
+}
+
+属性上：@ApiModelProperty
+@ApiModelProperty(value = "登录用户名")
+    @Size(min = 2,max = 20,message = "登录名[2-20]位!")
+    @NotBlank(message = "登录名必填!")
+    private String loginName;
+
 GET ，DELETE,POST,PUT：
 --@ApiOperation：操作的说明（value）
 --@ApiImplicitParam：参数说明：如参数名称，参数值（中文描述），参数类型（dataType）
