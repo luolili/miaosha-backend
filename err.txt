@@ -37,6 +37,8 @@
 
 
 ------use swagger
+
+swagger传字符串数组的方法：点一个add item,在出来的输入框里面输入一个具体的字符串； 再点一次add item,再出来的第二个输入框里面输入第二个字符串元素
 1.导包--2.在controller 下面的config包下面写一个SwaggerConfig--3.在请求上面加注解
 访问地址：  http://localhost:8090/swagger-ui.html
 注解：
